@@ -59,7 +59,7 @@ def calc_heating_rate(Mej,vej, Amin,Amax,ffraction,kappa_effs,alpha_max,alpha_mi
         ts.append(t)
         t*= 1. + delta_t
 
-    print 'total time step = ', len(total_heats)
+#    print 'total time step = ', len(total_heats)
     for A in range(Amin,min(Amax,Amax_beta)+1): 
         each_heats = np.zeros(len(ts))
         each_gammas = np.zeros(len(ts))
@@ -154,8 +154,8 @@ def calc_heating_rate(Mej,vej, Amin,Amax,ffraction,kappa_effs,alpha_max,alpha_mi
           #  print i,xs[1][0]
                 elif(i==0):
                     tmp_numb[i] = np.exp(-t*lambda_sort[i][i])
-                else:
-                    print 'chain is too long'
+               # else:
+               #     print 'chain is too long'
            # print i,lambda_sort[i][i]
             
         
@@ -270,7 +270,7 @@ def calc_heating_rate(Mej,vej, Amin,Amax,ffraction,kappa_effs,alpha_max,alpha_mi
     data = {'t':np.multiply(ts,1./day),'total':total_heats,'gamma':total_gammas, 'electron':total_elects, 'gamma_th':total_gamma_ths,'electron_th':total_elect_ths}
     return data        
        # t *= 1.0 + delta_t
-    print 'end'
+#    print 'end'
 
 
 def calc_heating_rate_alpha(Mej,vej, Amin,Amax,ffraction,Yas,kappa_effs,alpha_max,alpha_min,n):
@@ -342,7 +342,7 @@ def calc_heating_rate_alpha(Mej,vej, Amin,Amax,ffraction,Yas,kappa_effs,alpha_ma
                 else:
                     number_of_br += 1
             number_of_chain = np.power(2,number_of_br)
-            print Aa," number of chains:", number_of_chain
+            #print Aa," number of chains:", number_of_chain
 
 #identify all chains starting with A, Z
 #the number of chain is the number of branching decays +1
@@ -554,7 +554,7 @@ def calc_heating_rate_alpha(Mej,vej, Amin,Amax,ffraction,Yas,kappa_effs,alpha_ma
                 for i in range(0,NN):
                     branch *= branching_ratio[k][i]
                     branch_chains[k][i] = branch
-            print 'total time step = ', len(total_heats)
+            #print 'total time step = ', len(total_heats)
             for kk in range(0,number_of_chain): 
                 each_heats = np.zeros(len(ts))
                 each_gammas = np.zeros(len(ts))
@@ -661,8 +661,8 @@ def calc_heating_rate_alpha(Mej,vej, Amin,Amax,ffraction,Yas,kappa_effs,alpha_ma
                             tmp_numb[i] = coeff*np.exp(-t*lambda_sort[i][i])*bt.calc_M0_1(xs[1][0]*t)
                         elif(i==0):
                             tmp_numb[i] = np.exp(-t*lambda_sort[i][i])
-                        else:
-                            print 'chain is too long'
+                        #else:
+                        #    print 'chain is too long'
          
             
         
@@ -848,7 +848,7 @@ def calc_heating_rate_alpha(Mej,vej, Amin,Amax,ffraction,Yas,kappa_effs,alpha_ma
 
     data = {'t':np.multiply(ts,1./day),'total':total_heats,'alpha':total_alphas,'gamma':total_gammas, 'electron':total_elects,'alpha_th':total_alpha_ths, 'gamma_th':total_gamma_ths,'electron_th':total_elect_ths}
 
-    print 'end'
+   # print 'end'
     return data
 
    
