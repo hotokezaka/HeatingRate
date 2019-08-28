@@ -59,7 +59,7 @@ def calc_heating_rate(Mej,vej, Amin,Amax,ffraction,kappa_effs,alpha_max,alpha_mi
         ts.append(t)
         t*= 1. + delta_t
 
-    print 'total time step = ', len(total_heats)
+    #print 'total time step = ', len(total_heats)
     for A in range(Amin,min(Amax,Amax_beta)+1): 
         each_heats = np.zeros(len(ts))
         each_gammas = np.zeros(len(ts))
@@ -154,8 +154,8 @@ def calc_heating_rate(Mej,vej, Amin,Amax,ffraction,kappa_effs,alpha_max,alpha_mi
           #  print i,xs[1][0]
                 elif(i==0):
                     tmp_numb[i] = np.exp(-t*lambda_sort[i][i])
-                else:
-                    print 'chain is too long'
+#                else:
+                  #  print 'chain is too long'
            # print i,lambda_sort[i][i]
             
         
@@ -270,7 +270,7 @@ def calc_heating_rate(Mej,vej, Amin,Amax,ffraction,kappa_effs,alpha_max,alpha_mi
     data = {'t':np.multiply(ts,1./day),'total':total_heats,'gamma':total_gammas, 'electron':total_elects, 'gamma_th':total_gamma_ths,'electron_th':total_elect_ths}
     return data        
        # t *= 1.0 + delta_t
-    print 'end'
+#    print 'end'
 
 
 def calc_heating_rate_sf(Mej,vej, Amin,Amax,ffraction,ffission_A,ffission_X,kappa_effs,alpha_max,alpha_min,n):
@@ -323,7 +323,7 @@ def calc_heating_rate_sf(Mej,vej, Amin,Amax,ffraction,ffission_A,ffission_X,kapp
         ts.append(t)
         t*= 1. + delta_t
 
-    print 'total time step = ', len(total_heats)
+   # print 'total time step = ', len(total_heats)
     for ii in range(0,len(ffission_A)):
         A = ffission_A[ii]
 #        each_heats = np.zeros(len(ts))
@@ -427,8 +427,8 @@ def calc_heating_rate_sf(Mej,vej, Amin,Amax,ffraction,ffission_A,ffission_X,kapp
           #  print i,xs[1][0]
                 elif(i==0):
                     tmp_numb[i] = np.exp(-t*lambda_sort[i][i])
-                else:
-                    print 'chain is too long'
+                #else:
+                  #  print 'chain is too long'
            # print i,lambda_sort[i][i]
             
         
@@ -624,7 +624,7 @@ def calc_heating_rate_sf(Mej,vej, Amin,Amax,ffraction,ffission_A,ffission_X,kapp
     data = {'t':np.multiply(ts,1./day),'total':total_heats,'gamma':total_gammas, 'electron':total_elects, 'gamma_th':total_gamma_ths,'electron_th':total_elect_ths}
     return data        
        # t *= 1.0 + delta_t
-    print 'end'
+    #print 'end'
 
 
 
