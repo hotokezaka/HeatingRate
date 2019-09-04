@@ -1,4 +1,4 @@
-# Radioactive Heating Rate for Neutron Star Merger Ejecta (Macronova/Kilonova)
+# Radioactive Heating Rate and Macronova (Kilonova) Light Curve
 Authors:
 Kenta Hotokezaka and Ehud Nakar
 
