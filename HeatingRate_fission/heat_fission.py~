@@ -279,7 +279,7 @@ def calc_heating_rate_sf(Mej,vej, Amin,Amax,ffraction,ffission_A,ffission_X,kapp
     t_final = 1000.*day
     delta_t = 0.3#0.3
 
-    Nth = 400#400 for default
+    Nth = 100#40 for default
 
     
     Amax_beta = 209

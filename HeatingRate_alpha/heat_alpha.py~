@@ -275,10 +275,10 @@ def calc_heating_rate(Mej,vej, Amin,Amax,ffraction,kappa_effs,alpha_max,alpha_mi
 
 def calc_heating_rate_alpha(Mej,vej, Amin,Amax,ffraction,Yas,kappa_effs,alpha_max,alpha_min,n):
     t_initial = 0.01*day
-    t_final = 1000.*day
+    t_final = 3000.*day
     delta_t = 0.3
 
-    Nth = 40
+    Nth = 70
 
     Xtot = 0.
 
