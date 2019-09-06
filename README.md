@@ -1,5 +1,5 @@
-# Radioactive Heating Rate and Macronova (Kilonova) Light Curve
-## Authors: Kenta Hotokezaka and Ehud Nakar
+## Radioactive Heating Rate and Macronova (Kilonova) Light Curve
+### Authors: Kenta Hotokezaka and Ehud Nakar
 
 
 - decay_chain_thermal_beta.ipynb
