@@ -4,7 +4,7 @@
 
 - decay_chain_thermal_beta.ipynb     &nbsp;(beta-decay only)
 - decay_chain_thermal_alpha.ipynb    &nbsp;(beta and alpha decay)
-- decay_chain_theraml_fission.ipynb  &nbsp;(beta and spontaneous fission--currently only 254Cf--)
+- decay_chain_theraml_fission.ipynb  &nbsp;(beta and spontaneous fission; currently only 254Cf)
 
 work with Jupyter Notebook. These codes calculate nuclear heating rates [erg/s/g]  of beta-decay, alpha-decay, and spontaneous fission of r-process nuclei, taking into account for thermalization of gamma-rays and charged decay products in r-process ejecta. The codes use the half-lives and injection energy spectra from an evaluated nuclear data library (ENDF/B-VII.1). The heating rate is computed for given abundances, ejecta mass, velocity, and density profile.
 
