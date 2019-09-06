@@ -12,3 +12,7 @@ The codes also compute the bolometric light curve and the evolution of the effec
 
 
 These codes support both Python 2 and Python 3.
+
+
+### Documentation
+See [](http://github.com/hotokezaka/HeatingRate) for details.
