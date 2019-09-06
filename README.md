@@ -11,7 +11,8 @@ work with Jupyter Notebook. These codes calculate nuclear heating rates [erg/s/g
 The codes also compute the bolometric light curve and the evolution of the effective temperature for given abundances, ejecta mass, velocity, and density profile assuming opacities independent of the wavelength.
 
 
-These codes support both Python 2 and Python 3.
+### Environment 
+These codes support both Python 2 and Python 3 and require [NumPy](https://numpy.org), [SciPy](https://www.scipy.org), [Pandas](https://pandas.pydata.org), and [Matplotlib](https://matplotlib.org).
 
 
 ### Documentation
