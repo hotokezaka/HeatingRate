@@ -15,4 +15,4 @@ These codes support both Python 2 and Python 3.
 
 
 ### Documentation
-See [](http://github.com/hotokezaka/HeatingRate) for details.
+See [here](http://github.com/hotokezaka/HeatingRate) for details.
