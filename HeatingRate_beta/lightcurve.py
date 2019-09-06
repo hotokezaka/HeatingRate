@@ -144,7 +144,7 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
         #print '4',L_RK4, dE_RK4,erfc,heat
             Eins[i] += (dE_RK1+2.*dE_RK2+2.*dE_RK3+dE_RK4)/6.
             Ltot += (L_RK1 + 2.*L_RK2 + 2.*L_RK3+L_RK4)/6.
-
+        t += dt
     #search for the shell of tau = 1
     
         if(taus[0]/(t*t)>1. and taus[len(bes)-1]/(t*t)<1.):
@@ -187,7 +187,7 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
                 temps.append(temp)
 
 
-        t += dt
+
         j += 1
 
 
