@@ -14,7 +14,7 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
     be_max = vej*alpha_max/c
 
     be = be_min
-    dbe = be_min/float(Nbeta)
+    dbe = (beta_max-be_min)/float(Nbeta)
 
     be_tmps =[]
     tau_tmps = []
