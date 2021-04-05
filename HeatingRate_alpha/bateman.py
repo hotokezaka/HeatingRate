@@ -34,5 +34,5 @@ def calc_M0_8(x1, x2, x3, x4, x5, x6, x7, x8):
 def calc_M0_9(x1, x2, x3, x4, x5, x6, x7, x8, x9):
     return (calc_M0_8(x1,x2,x3,x4,x5,x6,x7,x8) - calc_M0_8(x2,x3,x4,x5,x6,x7,x8,x9))/(x9-x1)
 
-def calc_M0_10(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10):
+def calc_M0_10(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10):
     return (calc_M0_8(x1,x2,x3,x4,x5,x6,x7,x8,x9) - calc_M0_9(x2,x3,x4,x5,x6,x7,x8,x9,x10))/(x10-x1)
