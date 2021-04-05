@@ -39,7 +39,7 @@ def calc_kappa_beta(Etmp):
     tmp = np.log(tmp1) - (2./gamma-1.+beta*beta)*np.log(2) + 1. - beta*beta + (1.-1./gamma)*(1.-1./gamma)/8.
     omegap = np.sqrt(4.*np.pi*1.0e5*e*e/me)
     tmp_f = np.log(1.123*me*c*c*c*beta*beta*beta/(e*e*omegap))
-    kappabeta = beta*2.*np.pi*Z*np.power(e,4.)*tmp/(me*c*c*beta*beta)/MeV/(A*mu)
+    kappabeta = beta*2.*np.pi*Z*np.power(e,4.)*tmp/(me*c*c*beta*beta)/MeV/(A*mu)\
                 + beta*4.*np.pi*np.power(e,4.)*tmp_f/(me*c*c*beta*beta)/MeV/(A*mu)
     
     return kappabeta 
