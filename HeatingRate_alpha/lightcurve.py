@@ -8,7 +8,8 @@ day = 86400.
 c  = const.c.cgs.value
 sigma_SB = const.sigma_sb.cgs.value
 
-def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,heat_time, heat_rate):    
+def calc_lightcurve(Mej, vej, alpha_max, alpha_min, n, kappa_low, 
+                    kappa_high, be_kappa, heat_time, heat_rate):    
 
     Nbeta = 100
     rho0 = Mej*(n-3.)/(4.*np.pi*np.power(vej,3.))/(1.-np.power(alpha_max/alpha_min,-n+3.))
@@ -25,9 +26,11 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
     M = 0.
     while(be <= be_max):
         if(be > be_kappa):
-            tau = kappa_low*be_min*c*rho0*(np.power(be/be_min,-n+1.)-np.power(be_max/be_min,-n+1.))/(n-1.)
+            tau = kappa_low*be_min*c*rho0*(np.power(be/be_min,-n+1.)
+                                           -np.power(be_max/be_min,-n+1.))/(n-1.)
         else:
-            tau = kappa_low*be_min*c*rho0*(np.power(be_kappa/be_min,-n+1.)-np.power(be_max/be_min,-n+1.))/(n-1.)+kappa_high*be_min*c*rho0*(np.power(be/be_min,-n+1.)-np.power(be_kappa/be_min,-n+1.))/(n-1.)
+            tau = kappa_low*be_min*c*rho0*(np.power(be_kappa/be_min,-n+1.)
+                                           -np.power(be_max/be_min,-n+1.))/(n-1.)+kappa_high*be_min*c*rho0*(np.power(be/be_min,-n+1.)-np.power(be_kappa/be_min,-n+1.))/(n-1.)
         dM = 4.*np.pi*np.power(vej,3.)*rho0*np.power(be/be_min,-n+2.)*dbe/be_min
         td2 = tau*be
         tau_tmps.append(tau)
@@ -52,27 +55,27 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
     temps = []
     j = 0
     k=0
-    while(t<30.*day):
+    while(t < 30.0*day):
         
 
     
-        while(t>heat_time[k]*day):
+        while(t > heat_time[k]*day):
             k += 1
-        heat_th0 = interp(t/day,heat_time[k-1],heat_time[k],heat_rate[k-1],heat_rate[k]) 
+        heat_th0 = interp(t/day, heat_time[k-1], heat_time[k], heat_rate[k-1], heat_rate[k]) 
 
     
-        while(t+0.5*dt>heat_time[k]*day):
+        while(t+0.5*dt > heat_time[k]*day):
             k += 1
-        heat_th1 = interp((t+0.5*dt)/day,heat_time[k-1],heat_time[k],heat_rate[k-1],heat_rate[k]) 
+        heat_th1 = interp((t+0.5*dt)/day, heat_time[k-1], heat_time[k], heat_rate[k-1], heat_rate[k]) 
     
-        while(t+dt>heat_time[k]*day):
+        while(t+dt > heat_time[k]*day):
             k += 1
-        heat_th2 = interp((t+dt)/day,heat_time[k-1],heat_time[k],heat_rate[k-1],heat_rate[k]) 
+        heat_th2 = interp((t+dt)/day, heat_time[k-1], heat_time[k], heat_rate[k-1], heat_rate[k]) 
  
     
         Ltot = 0.
         for i in range(0,len(bes)):
-            vel =bes[i]*c
+            vel = bes[i]*c
         #RK step 1
             E_RK1 = Eins[i]
             t_RK1 = t
@@ -111,11 +114,11 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
         
         #RK step 3
             E_RK3 = Eins[i] + 0.5*dE_RK2
-            t_RK3 = t+0.5*dt       
+            t_RK3 = t + 0.5*dt       
             t_dif = tds[i]/t_RK3
             heat = dMs[i]*(heat_th1)
         
-            if(t_RK3>t_dif):
+            if(t_RK3 > t_dif):
                 tesc = t_dif + bes[i]*t_RK3
             else:
                 tesc = t_RK3 + bes[i]*t_RK3
@@ -129,7 +132,7 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
         
         #RK step 4
             E_RK4 = Eins[i] + dE_RK3
-            t_RK4 = t +dt        
+            t_RK4 = t + dt        
             t_dif = tds[i]/t_RK4
             heat = dMs[i]*(heat_th2)
         
@@ -144,20 +147,20 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
             L_RK4 = erfc*E_RK4/tesc
             dE_RK4 = (-E_RK4/t_RK4 - L_RK4 + heat)*dt
         #print '4',L_RK4, dE_RK4,erfc,heat
-            Eins[i] += (dE_RK1+2.*dE_RK2+2.*dE_RK3+dE_RK4)/6.
+            Eins[i] += (dE_RK1 + 2.*dE_RK2 + 2.*dE_RK3+dE_RK4)/6.
             Ltot += (L_RK1 + 2.*L_RK2 + 2.*L_RK3+L_RK4)/6.
         t += dt
     #search for the shell of tau = 1
     
-        if(taus[0]/(t*t)>1. and taus[len(bes)-1]/(t*t)<1.):
+        if(taus[0]/(t*t) > 1. and taus[len(bes)-1]/(t*t) < 1.):
             l=0
-            while(taus[l]/(t*t)>1.):
+            while(taus[l]/(t*t) > 1.):
                 l+=1
-            be = interp(t*t,taus[l-1],taus[l],bes[l-1],bes[l])
+            be = interp(t*t, taus[l-1], taus[l], bes[l-1], bes[l])
             r = be*c*t
-            Eint = interp(t*t,taus[l-1],taus[l],Eins[l-1],Eins[l])
-        elif(taus[len(bes)-1]/(t*t)>1.):
-            l = len(bes)-1
+            Eint = interp(t*t, taus[l-1], taus[l], Eins[l-1], Eins[l])
+        elif(taus[len(bes)-1]/(t*t) > 1.):
+            l = len(bes) - 1
             be = bes[l]
             r = be*c*t
             Eint = Eins[l]
@@ -168,22 +171,22 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
             Eint = Eins[0]
         tmp = Ltot/(4.*np.pi*sigma_SB*r*r);
         temp = np.power(tmp,0.25)
-        if(j<10):
+        if(j < 10):
             Ls.append(Ltot)
             ts.append(t)
             temps.append(temp)
-        elif(j<100):
-            if(j%3==0):
+        elif(j < 100):
+            if(j%3 == 0):
                 Ls.append(Ltot)
                 ts.append(t)
                 temps.append(temp)
-        elif(j<1000):
-            if(j%30==0):
+        elif(j < 1000):
+            if(j%30 == 0):
                 Ls.append(Ltot)
                 ts.append(t)
                 temps.append(temp)
-        elif(j<10000):
-            if(j%100==0):
+        elif(j < 10000):
+            if(j%100 == 0):
                 Ls.append(Ltot)
                 ts.append(t)
                 temps.append(temp)
