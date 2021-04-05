@@ -19,7 +19,7 @@ kappa_alpha = -0.15
 gam_t = 0.15#0.15
 gam_t_sf = -0.98
 x_ad = 2.#2.0
-me_MeV = 0.511
+#me_MeV = 0.511
 #E is kinetic energy in MeV
 def calc_ad(E):
     p = np.sqrt(((E/me_MeV)+1.)*((E/me_MeV)+1.)-1.)
