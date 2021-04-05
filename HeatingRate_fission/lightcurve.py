@@ -11,7 +11,7 @@ sigma_SB = const.sigma_sb.cgs.value
 def calc_lightcurve(Mej, vej, alpha_max, alpha_min, n, 
                     kappa_low, kappa_high, be_kappa, heat_time, heat_rate):    
 
-    Nbeta = 100
+    Nbeta = 200
     rho0 = Mej*(n-3.)/(4.*np.pi*np.power(vej,3.))/(1.-np.power(alpha_max/alpha_min,-n+3.))
     be_min = vej*alpha_min/c
     be_max = vej*alpha_max/c
