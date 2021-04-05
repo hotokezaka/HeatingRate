@@ -2,11 +2,14 @@ from numpy import pi
 import numpy as np
 import pandas as pd
 from scipy import special
-day = 86400.
-c = 2.99792458e10
-sigma_SB = 5.670373e-5
+from astropy import constants as const
 
-def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,heat_time, heat_rate):    
+day = 86400.
+c  = const.c.cgs.value
+sigma_SB = const.sigma_sb.cgs.value
+
+def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,
+                    kappa_high,be_kappa,heat_time, heat_rate):    
 
     Nbeta = 100
     rho0 = Mej*(n-3.)/(4.*np.pi*np.power(vej,3.))/(1.-np.power(alpha_max/alpha_min,-n+3.))
@@ -14,7 +17,8 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
     be_max = vej*alpha_max/c
 
     be = be_min
-    dbe = (beta_max-be_min)/float(Nbeta)
+#    dbe = (be_min)/float(Nbeta)
+    dbe = (be_max-be_min) / float(Nbeta)
 
     be_tmps =[]
     tau_tmps = []
@@ -23,18 +27,22 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
     M = 0.
     while(be <= be_max):
         if(be > be_kappa):
-            tau = kappa_low*be_min*c*rho0*(np.power(be/be_min,-n+1.)-np.power(be_max/be_min,-n+1.))/(n-1.)
+            tau = (kappa_low*be_min*c*rho0*(np.power(be/be_min,-n+1.)
+                   -np.power(be_max/be_min,-n+1.))/(n-1.))
         else:
-            tau = kappa_low*be_min*c*rho0*(np.power(be_kappa/be_min,-n+1.)-np.power(be_max/be_min,-n+1.))/(n-1.)+kappa_high*be_min*c*rho0*(np.power(be/be_min,-n+1.)-np.power(be_kappa/be_min,-n+1.))/(n-1.)
+            tau = (kappa_low*be_min*c*rho0*(np.power(be_kappa/be_min,-n+1.)
+                   -np.power(be_max/be_min,-n+1.))/(n-1.)
+                   +kappa_high*be_min*c*rho0*(np.power(be/be_min,-n+1.)
+                   -np.power(be_kappa/be_min,-n+1.))/(n-1.))
         dM = 4.*np.pi*np.power(vej,3.)*rho0*np.power(be/be_min,-n+2.)*dbe/be_min
         td2 = tau*be
         tau_tmps.append(tau)
         td_tmps.append(td2)
         be_tmps.append(be)
         dM_tmps.append(dM)
-    
+        M += dM
         be += dbe
-
+    print(M,be,len(be_tmps))
     bes = np.array(be_tmps)
     dMs = np.array(dM_tmps)
     tds = np.array(td_tmps)
@@ -49,7 +57,7 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
     Ls = []
     temps = []
     j = 0
-    k=0
+    k = 0
     while(t<30.*day):
         
 
@@ -70,7 +78,7 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
     
         Ltot = 0.
         for i in range(0,len(bes)):
-            vel =bes[i]*c
+            vel = bes[i]*c
         #RK step 1
             E_RK1 = Eins[i]
             t_RK1 = t
@@ -150,7 +158,7 @@ def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,
         if(taus[0]/(t*t)>1. and taus[len(bes)-1]/(t*t)<1.):
             l=0
             while(taus[l]/(t*t)>1.):
-                l+=1
+                l += 1
             be = interp(t*t,taus[l-1],taus[l],bes[l-1],bes[l])
             r = be*c*t
             Eint = interp(t*t,taus[l-1],taus[l],Eins[l-1],Eins[l])
