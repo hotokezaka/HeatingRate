@@ -177,7 +177,7 @@ def calc_lightcurve(Mej, vej, alpha_max, alpha_min, n,
             ts.append(t)
             temps.append(temp)
         elif(j < 100):
-            if(j%3 = =0):
+            if(j%3 == 0):
                 Ls.append(Ltot)
                 ts.append(t)
                 temps.append(temp)
