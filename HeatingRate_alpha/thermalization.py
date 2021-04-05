@@ -1,13 +1,15 @@
 import numpy as np
 from numpy import pi
+from astropy import constants as const
 
-c = 2.99792458e10
-eV = 1.60218e-12
+c = const.c.cgs.value
+eV = 1.6021766e-12
 MeV = 1.0e6*eV
-me = 9.10938356e-28
-e = 4.803204e-10
-me_MeV = 0.511
-mu = 1.66054e-24
+me = const.m_e.cgs.value
+e = const.e.esu.value
+mu = const.u.cgs.value
+E = const.c*const.c*const.m_e
+me_MeV = E.to('MeV').value
 ma = 4.001506179127*mu
 kappa_beta = 1.0 #MeV cm^2/g
 kappa_alpha = -0.15
