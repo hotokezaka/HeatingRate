@@ -2,9 +2,11 @@ from numpy import pi
 import numpy as np
 import pandas as pd
 from scipy import special
+from astropy import constants as const
+
 day = 86400.
-c = 2.99792458e10
-sigma_SB = 5.670373e-5
+c  = const.c.cgs.value
+sigma_SB = const.sigma_sb.cgs.value
 
 def calc_lightcurve(Mej,vej,alpha_max,alpha_min,n,kappa_low,kappa_high,be_kappa,heat_time, heat_rate):    
 
