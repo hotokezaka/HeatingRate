@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import math
 from astropy import constants as const
-from astropy import units as u
 from numba import jit
 
 
@@ -21,7 +20,7 @@ def calc_lightcurve(Mej, vej, alpha_max, alpha_min, n, kappa_low,
     be_max = vej*alpha_max/c
 
     be = be_min
-#    dbe = (be_min)/float(Nbeta)
+
     dbe = (be_max-be_min)/float(Nbeta)
 
     be_tmps =[]
@@ -95,7 +94,7 @@ def calc_lightcurve(Mej, vej, alpha_max, alpha_min, n, kappa_low,
                 tesc = t_RK1 + bes[i]*t_RK1
         
             ymax = np.sqrt(0.5*t_dif/t_RK1)
-#            erfc = special.erfc(ymax)
+
             erfc = math.erfc(ymax)
        
             L_RK1 = erfc*E_RK1/tesc
@@ -114,7 +113,7 @@ def calc_lightcurve(Mej, vej, alpha_max, alpha_min, n, kappa_low,
                 tesc = t_RK2 + bes[i]*t_RK2
             
             ymax = np.sqrt(0.5*t_dif/t_RK2)
-#            erfc = special.erfc(ymax)
+
             erfc = math.erfc(ymax)
             L_RK2 = erfc*E_RK2/tesc
             dE_RK2 = (-E_RK2/t_RK2 - L_RK2 + heat)*dt
@@ -132,7 +131,7 @@ def calc_lightcurve(Mej, vej, alpha_max, alpha_min, n, kappa_low,
                 tesc = t_RK3 + bes[i]*t_RK3
 
             ymax = np.sqrt(0.5*t_dif/t_RK3)
-#            erfc = special.erfc(ymax)
+
             erfc = math.erfc(ymax) 
             L_RK3 = erfc*E_RK3/tesc
             dE_RK3 = (-E_RK3/t_RK3 - L_RK3 + heat)*dt
@@ -150,7 +149,7 @@ def calc_lightcurve(Mej, vej, alpha_max, alpha_min, n, kappa_low,
                 tesc = t_RK4 + bes[i]*t_RK4
      
             ymax = np.sqrt(0.5*t_dif/t_RK4)
-#            erfc = special.erfc(ymax)
+
             erfc = math.erfc(ymax)
             L_RK4 = erfc*E_RK4/tesc
             dE_RK4 = (-E_RK4/t_RK4 - L_RK4 + heat)*dt
@@ -207,8 +206,7 @@ def calc_lightcurve(Mej, vej, alpha_max, alpha_min, n, kappa_low,
 
 
     data = {'t':np.array(ts),'LC':np.array(Ls),'T':np.array(temps)}
-#        data = {'t':ts*u.s,'LC':np.array(Ls)*u.erg/u.s,'T':np.array(temps)*u.K}
-#    data = {'t':muliply(ts,1./day)*u.d,'LC':np.array(Ls)*u.erg/u.s,'T':np.array(temps)*u.K}
+
     return data        
 
 @jit(nopython=True)
