@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from scipy import special
 from astropy import constants as const
+from astropy import units as u
 
 day = 86400.
 c  = const.c.cgs.value
@@ -198,7 +199,7 @@ def calc_lightcurve(Mej, vej, alpha_max, alpha_min, n, kappa_low,
 
 
 
-    data = {'t':np.multiply(ts,1./day),'LC':np.array(Ls),'T':np.array(temps)}
+    data = {'t':np.multiply(ts,1./day)*u.d,'LC':np.array(Ls)*u.erg/u.s,'T':np.array(temps)*u.K}
     return data        
        # t *= 1.0 + delta_t
     #print 'end'
